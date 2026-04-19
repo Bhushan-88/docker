@@ -29,6 +29,18 @@ docker top <con id > #con proccess
 docker images
 docker pull <image name> #it pull image from docker hub
 docker commit bb544c11c2f1 # create image from container 
+docker tag <image id> demo:1.0.0 # set image name using tag 
+ex:docker tag a3d6962014f5 username/repo:tag 
+docker tag a3d6962014f5 bhushandurgawli/demo:1.0.0 #
+docker login # to login container resistry 
+docker push bhushandurgawli/demo:1.0.0 # push image to resistry
+docker save -o nginx.tar <img id > # save image at local system //OR archive 
+docker image rm `docker images -Q` # remove all unused images
+docker load -i nginx.tar # extract image from archive file
+docker create nginx # create not running containter , after create start 
+
+## Docker Network 
+
 
 
 
