@@ -40,6 +40,8 @@ docker load -i nginx.tar # extract image from archive file
 docker create nginx # create not running containter , after create start 
 
 ## Docker Network 
+Networking: By default, containers are isolated. If you have a Web App container and a Database container, you have to put them on the same Docker Network so the app can save data to the DB.
+
 docker network ls
 docker run -d --network host nginx # run containe on host 
 docker inspect 40b4ac712fc07c5 | grep Network
@@ -52,4 +54,5 @@ docker inspect 744ac80e25b5 |grep IP # img id
 172.17.0.2 http
 
 ## Docker Volume 
+Volumes: Containers are ephemeral (temporary). If you save a file inside a container and then delete that container, the file is gone forever. Volumes "plug in" to the container so that even if the container dies, your database files or logs stay safe on the host machine.
 
