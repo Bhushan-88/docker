@@ -40,8 +40,13 @@ docker load -i nginx.tar # extract image from archive file
 docker create nginx # create not running containter , after create start 
 
 ## Docker Network 
+docker network ls
+docker run -d --network host nginx # run containe on host 
+docker inspect 40b4ac712fc07c5 | grep Network
+docker network create my-net --driver=bridge --subnet="192.168.0.0/16" #create netwrk with subnet 
+docker inspect b06795f720c7 # network id 
+docker run -d --network my-net nginx 
+docker inspect 744ac80e25b5 |grep IP # img id
 
-
-
-
-
+192.168.0.2 nginx 
+172.17.0.2 http
