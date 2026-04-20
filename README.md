@@ -55,4 +55,7 @@ docker inspect 744ac80e25b5 |grep IP # img id
 
 ## Docker Volume 
 Volumes: Containers are ephemeral (temporary). If you save a file inside a container and then delete that container, the file is gone forever. Volumes "plug in" to the container so that even if the container dies, your database files or logs stay safe on the host machine.
+docker volume ls ORR// docker volume list
+docker volume create my-vol
+docker volume run -d -v my-vol:/usr/share/nginx/html nginx
 
