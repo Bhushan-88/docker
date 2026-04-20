@@ -63,5 +63,45 @@ docker volume run -d -v my-vol:/usr/share/nginx/html nginx
 A text file with a series of commands that Docker reads sequentially to
 build an image — a lightweight, standalone, executable package containing
 your application, runtime, libraries, and dependencies.
+#Each instruction in a Dockerfile creates a layer — a thin filesystem snapshot.
+FROM ubuntu:22.04          # Layer 1
+RUN apt-get install curl   # Layer 2 (built on Layer 1)
+COPY app.py .              # Layer 3 (built on Layer 2)
+RUN python app.py          # Layer 4 (built on Layer 3)
 
 
+# Specific base image version
+FROM python:3.9-slim
+
+# Minimize layers — combine RUN commands
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy requirements first (for layer caching)
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy code last (changes frequently)
+COPY . .
+
+EXPOSE 8000
+CMD ["python", "app.py"]
+
+
+
+
+FROM python:3.0-slim 
+RUN apt update && apt install -y \
+curl \
+ping \
+&& rm -rvf /var/lib/apt/lists/*
+WORKDIR /app
+COPY reirement.txt .
+RUN pip install -r reuirement.txt 
+copy . .
+EXPOSE 8000
+CMD ["python" , "app.py"]
