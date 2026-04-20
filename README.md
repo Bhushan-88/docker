@@ -59,3 +59,9 @@ docker volume ls ORR// docker volume list
 docker volume create my-vol
 docker volume run -d -v my-vol:/usr/share/nginx/html nginx
 
+## What is a Dockerfile?
+A text file with a series of commands that Docker reads sequentially to
+build an image — a lightweight, standalone, executable package containing
+your application, runtime, libraries, and dependencies.
+
+
