@@ -1,4 +1,4 @@
-FROM centos:7
+FROM python:3.8-slim
 RUN yum -y install java-openjdk
 ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz /opt
 WORKDIR /opt
