@@ -25,13 +25,14 @@ docker cp index.html 91138aabaaf1c:/usr/share/nginx/html/index.html # copy file 
 docker cp 91138aabaaf1c:/usr/share/nginx/html/index.html ./ # copy from container
 docker top <con id > #con proccess
 
-# 
+# Docker Images
 docker images
 docker pull <image name> #it pull image from docker hub
 docker commit bb544c11c2f1 # create image from container 
 docker tag <image id> demo:1.0.0 # set image name using tag 
 ex:docker tag a3d6962014f5 username/repo:tag 
 docker tag a3d6962014f5 bhushandurgawli/demo:1.0.0 #
+docker push bhushandurgawli/ubuntu:22.04-tomcat-studentapp # Docker Hub
 docker login # to login container resistry 
 docker push bhushandurgawli/demo:1.0.0 # push image to resistry
 docker save -o nginx.tar <img id > # save image at local system //OR archive 
@@ -58,6 +59,7 @@ Volumes: Containers are ephemeral (temporary). If you save a file inside a conta
 docker volume ls ORR// docker volume list
 docker volume create my-vol
 docker volume run -d -v my-vol:/usr/share/nginx/html nginx
+```
 
 ## What is a Dockerfile?
 A text file with a series of commands that Docker reads sequentially to
@@ -70,7 +72,7 @@ COPY app.py .              # Layer 3 (built on Layer 2)
 RUN python app.py          # Layer 4 (built on Layer 3)
 
 
-# Specific base image version
+## Specific base image version
 FROM python:3.9-slim
 
 # Minimize layers — combine RUN commands
