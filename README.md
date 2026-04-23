@@ -65,15 +65,33 @@ docker volume run -d -v my-vol:/usr/share/nginx/html nginx
 A text file with a series of commands that Docker reads sequentially to
 build an image — a lightweight, standalone, executable package containing
 your application, runtime, libraries, and dependencies.
+
 #Each instruction in a Dockerfile creates a layer — a thin filesystem snapshot.
 FROM ubuntu:22.04          # Layer 1
 RUN apt-get install curl   # Layer 2 (built on Layer 1)
 COPY app.py .              # Layer 3 (built on Layer 2)
 RUN python app.py          # Layer 4 (built on Layer 3)
 
+## with dockerfile 
+docker build -t ubuntu:22.04-tomcat-studentapp .
+docker run -d -p 80:8080 2e977cf7653<img id>
+
 ## Create database and DB User with user.
 Create DB with name studentapp and ceate Table
-create database
+create database studentapp;
+use studentapp;
+use studentapp;
+CREATE TABLE if not exists students(student_id INT NOT NULL AUTO_INCREMENT,
+	student_name VARCHAR(100) NOT NULL,
+    student_addr VARCHAR(100) NOT NULL,
+	student_age VARCHAR(3) NOT NULL,
+	student_qual VARCHAR(20) NOT NULL,
+	student_percent VARCHAR(10) NOT NULL,
+	student_year_passed VARCHAR(10) NOT NULL,
+	PRIMARY KEY (student_id)
+);
+
+## User
 
 MariaDB [(none)]> create user admin identified by  '12345';
 Query OK, 0 rows affected (0.137 sec)
