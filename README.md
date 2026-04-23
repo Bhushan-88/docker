@@ -23,7 +23,7 @@ docker run -d -p 8080:80 --name my-container nginx # run  with  name
 docker logs b5e7e57e7ae2 # logs of container
 docker cp index.html 91138aabaaf1c:/usr/share/nginx/html/index.html # copy file inside the container 
 docker cp 91138aabaaf1c:/usr/share/nginx/html/index.html ./ # copy from container
-docker top <con id > #con proccess
+docker top <con id > #for con proccess
 
 # Docker Images
 docker images
