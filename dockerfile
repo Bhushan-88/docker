@@ -17,6 +17,16 @@ RUN cd /opt && \
     mv apache-tomcat-9.0.70 tomcat && \
     rm apache-tomcat-9.0.70.tar.gz
 
+# Download  student.war and place it in the webapps directory
+ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war /opt/tomcat/webapps/student.war
+
+# Download MySQL Connector and place it in the lib directory
+ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar /opt/tomcat/lib/mysql-connector.jar
+
+# Copy configuration files (if any)
+COPY context.xml /opt/tomcat/conf/context.xml
+
+
 # ============================================================================
 # STAGE 2: Runtime (Production Grade - Slim)
 # ============================================================================
@@ -24,7 +34,7 @@ FROM ubuntu:22.04
 
 LABEL maintainer="your-email@example.com"
 
-# Hum sirf JRE use karenge (Smaller size)
+# Install OpenJDK and clean up apt cache to reduce image size
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-11-jre-headless \
     curl \
@@ -35,7 +45,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV CATALINA_HOME=/opt/tomcat \
     PATH=$PATH:/opt/tomcat/bin
 
-# Stage 1 se sirf Tomcat folder copy karo
+# Copy Tomcat and the application from the builder stage 1
 COPY --from=builder /opt/tomcat /opt/tomcat
 
 # Security: Create and use non-root user
