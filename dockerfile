@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Download and Extract Tomcat
 RUN cd /opt && \
-    wget -q https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz && \
-    tar xzf apache-tomcat-9.0.70.tar.gz && \
-    mv apache-tomcat-9.0.70 tomcat && \
-    rm apache-tomcat-9.0.70.tar.gz
+    wget -q https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.117/bin/apache-tomcat-9.0.117.tar.gz && \
+    tar xzf apache-tomcat-9.0.117.tar.gz && \
+    mv apache-tomcat-9.0.117 tomcat && \
+    rm apache-tomcat-9.0.117.tar.gz
 
 # Download  student.war and place it in the webapps directory
 ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war /opt/tomcat/webapps/student.war
@@ -32,7 +32,7 @@ COPY context.xml /opt/tomcat/conf/context.xml
 # ============================================================================
 FROM ubuntu:22.04
 
-LABEL maintainer="your-email@example.com"
+LABEL maintainer="bhushandugawli1@gmail.com"
 
 # Install OpenJDK and clean up apt cache to reduce image size
 RUN apt-get update && apt-get install -y --no-install-recommends \
