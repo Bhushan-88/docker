@@ -71,7 +71,20 @@ RUN apt-get install curl   # Layer 2 (built on Layer 1)
 COPY app.py .              # Layer 3 (built on Layer 2)
 RUN python app.py          # Layer 4 (built on Layer 3)
 
+## Create database and DB User with user.
+Create DB with name studentapp and ceate Table
+create database
 
+MariaDB [(none)]> create user admin identified by  '12345';
+Query OK, 0 rows affected (0.137 sec)
+
+MariaDB [(none)]> grant all privileges on *.* to admin ;
+Query OK, 0 rows affected (0.044 sec)
+
+MariaDB [(none)]> flush privileges; 
+Query OK, 0 rows affected (0.063 sec)
+--------------------------------------------------------------------------------------------
+EX:-
 ## Specific base image version
 FROM python:3.9-slim
 
@@ -93,17 +106,4 @@ COPY . .
 EXPOSE 8000
 CMD ["python", "app.py"]
 
-
-
-
-FROM python:3.0-slim 
-RUN apt update && apt install -y \
-curl \
-ping \
-&& rm -rvf /var/lib/apt/lists/*
-WORKDIR /app
-COPY reirement.txt .
-RUN pip install -r reuirement.txt 
-copy . .
-EXPOSE 8000
-CMD ["python" , "app.py"]
+------------------------------------------------------------------------------------------------
