@@ -73,13 +73,13 @@ COPY app.py .              # Layer 3 (built on Layer 2)
 RUN python app.py          # Layer 4 (built on Layer 3)
 
 ## with dockerfile 
+```bash
 docker build -t ubuntu:22.04-tomcat-studentapp .
 docker run -d -p 80:8080 2e977cf7653<img id>
 
 ## Create database and DB User with user.
 Create DB with name studentapp and ceate Table
 create database studentapp;
-use studentapp;
 use studentapp;
 CREATE TABLE if not exists students(student_id INT NOT NULL AUTO_INCREMENT,
 	student_name VARCHAR(100) NOT NULL,
@@ -101,6 +101,7 @@ Query OK, 0 rows affected (0.044 sec)
 
 MariaDB [(none)]> flush privileges; 
 Query OK, 0 rows affected (0.063 sec)
+```
 --------------------------------------------------------------------------------------------
 EX:-
 ## Specific base image version
