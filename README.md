@@ -130,3 +130,4 @@ CMD ["python", "app.py"]
 ```bash
 docker rm -f $(docker ps -aq) #docker ps -aq → all container IDs , -f → force stop + remove
 docker rmi -f $(docker images -aq) #docker images -aq → all image IDs , -f → force delete
+docker system prune -a -f
